@@ -12,6 +12,7 @@
 - [单调队列](/template/monotonous-queue/monotonous-queue.md)
 - [堆](/template/heap/heap.md)
 - [字典树](/template/trie/trie.md)
+- [二分查找](/template/binary-search/binary-search.md)
 
 ## 鸣谢
 
