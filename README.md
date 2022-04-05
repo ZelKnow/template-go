@@ -11,6 +11,7 @@
 - [单调栈](/template/monotonous-stack/monotonous-stack.md)
 - [单调队列](/template/monotonous-queue/monotonous-queue.md)
 - [堆](/template/heap/heap.md)
+- [字典树](/template/trie/trie.md)
 
 ## 鸣谢
 
