@@ -14,6 +14,7 @@
 - [字典树](/template/trie/trie.md)
 - [二分查找](/template/binary-search/binary-search.md)
 - [动态规划](/template/dynamic-programming/dynamic-programming.md)
+- [线段树](template/segment_tree/segment_tree.md)
 
 ## 鸣谢
 
