@@ -15,6 +15,7 @@
 - [二分查找](/template/binary-search/binary-search.md)
 - [动态规划](/template/dynamic-programming/dynamic-programming.md)
 - [线段树](template/segment_tree/segment_tree.md)
+- [KMP](template/kmp/kmp.md)
 
 ## 鸣谢
 
