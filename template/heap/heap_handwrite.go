@@ -44,9 +44,7 @@ func (h hp) Swap(i, j int) {
 
 func (h *hp) push(v heapData) {
 	*h = append(*h, v)
-	for i:=h.Len()-1;i>=0;i=(i-1)/2 {
-		h.adjustUp(i)
-	}
+	h.adjustUp(h.Len()-1)
 }
 
 func (h *hp) pop() heapData {

@@ -15,3 +15,4 @@
 
 - [男女配对问题](https://atcoder.jp/contests/dp/tasks/dp_o)：考虑二进制表示 `i` ，表示前 `j` 个男生与 `i` 表示的女生配对，其中 `j` 为 `i` 二进制表示中 1 的个数
 - [树形DP](https://atcoder.jp/contests/dp/tasks/dp_p)：DFS 即可。根节点的 `dp` 值为计算出子树们的 `dp` 值，然后再推出根节点。 典型的 `dp` 值为当根节点为白色时的方案数，以及根节点为黑色时的方案数
+- 状压 DP：遍历子集 `for j:=i;j>=0;j=(j-1)&i`

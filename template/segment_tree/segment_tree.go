@@ -5,6 +5,7 @@ type lazyST []struct {
 	todo int64
 	lazy bool // 支持区间修改为某一个值
 	sum  int64 // 根据需要修改
+	// min int64
 }
 
 // 线段树定义的操作，可修改
@@ -12,10 +13,20 @@ func (lazyST) op(a, b int64) int64 {
 	return a + b // % mod
 }
 
+/*
+func (lazyST) op2(a, b int64) int64 {
+	if a > b {
+		return b
+	} else {
+		return a
+	}
+}*/
+
 // 根据子节点修改节点
 func (t lazyST) maintain(o int) {
 	lo, ro := t[o<<1], t[o<<1|1]
 	t[o].sum = t.op(lo.sum, ro.sum)
+	//t[o].min = t.op2(lo.min, ro.min)
 }
 
 // 根据数组构建线段树，下标从 1 开始
@@ -23,6 +34,7 @@ func (t lazyST) build(a []int64, o, l, r int) {
 	t[o].l, t[o].r = l, r
 	if l == r {
 		t[o].sum = a[l-1]
+		//t[o].min = a[l-1]
 		return
 	}
 	m := (l + r) >> 1
@@ -38,6 +50,7 @@ func (t lazyST) do(o int, add int64) {
 	to.todo += add                     // % mod
 	to.lazy = true
 	to.sum += int64(to.r-to.l+1) * add // % mod
+	// to.min += add
 }
 
 // 懒标记下放
@@ -94,4 +107,31 @@ func newLazySegmentTree(a []int64) lazyST {
 	t := make(lazyST, 4*len(a))
 	t.build(a, 1, 1, len(a))
 	return t
+}
+
+/* 查询区间 [l, r] 小于 v 的最靠左位置，此时的 op 需为 min
+   不存在时返回 0
+   可改成小于等于
+*/
+func (t lazyST) queryFirstLessPosInRange(o, l, r, v int) int {
+	/* 取消此处注释
+	if t[o].min >= v {
+		return 0
+	}*/
+	if t[o].l == t[o].r {
+		return t[o].l
+	}
+	t.spread(o)
+	m := (t[o].l + t[o].r) >> 1
+	if l <= m {
+		if pos := t.queryFirstLessPosInRange(o<<1, l, r, v); pos > 0 {
+			return pos
+		}
+	}
+	if m < r {
+		if pos := t.queryFirstLessPosInRange(o<<1|1, l, r, v); pos > 0 { // 注：这里 pos > 0 的判断可以省略，因为 pos == 0 时最后仍然会返回 0
+			return pos
+		}
+	}
+	return 0
 }
